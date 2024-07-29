@@ -1,7 +1,4 @@
 import express from "express";
-// import helmet
-import helmet from 'helmet';
-
 
 import {
   getRecipes,
@@ -17,25 +14,15 @@ const PORT = 3000;
 app.use(express.static("public"));
 app.use(express.json());
 
-// helmet 
-app.use(helmet());
-
-// Ask Helmet to ignore the X-Powered-By header.
-app.use(
-  helmet({
-    xPoweredBy: false,
-  })
-);
-
 // GET request to get all recipes
-app.get('/recipes', (req, res) => {
+app.get('/recipes', async (req, res) => {
   try {
+    const allRecipies = await getRecipes()
     res.status(200).json({
-      'success': 'egg 🥚',
-      'payload': null
+      'success': true,
+      'payload': allRecipies
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       'success': false,
       'payload': null
@@ -44,14 +31,15 @@ app.get('/recipes', (req, res) => {
 })
 
 // get request to get recipes by id
-app.get('/recipes/:id', (req, res) => {
+app.get('/recipes/:id', async (req, res) => {
   try {
+    const id = req.params.id // how we access any of the url/ path parameters in express
+    const newRecipe = await getRecipeByID(id)
     res.status(200).json({
       'success': 'eggById 🥚',
-      'payload': null
+      'payload': newRecipe
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       'success': false,
       'payload': null
@@ -60,15 +48,15 @@ app.get('/recipes/:id', (req, res) => {
 })
 
 // post request to create a new recipe
-app.post('/recipes', (req, res) => {
+app.post('/recipes', async (req, res) => {
   try {
-    // const newEgg = req.body;
+    const newEgg = req.body;
+    const stillNew = await createRecipe(newEgg)
     res.status(200).json({
-      // 'success': newEgg,
-      'payload': null
+      'success': newEgg,
+      'payload': stillNew
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       'success': false,
       'payload': null
@@ -77,14 +65,16 @@ app.post('/recipes', (req, res) => {
 })
 
 // patch request to update a recipe
-app.patch('/recipes/:id', (req, res) => {
+app.patch('/recipes/:id', async(req, res) => {
   try {
+    const recipe = req.params.id
+    const updatedRecipe = req.body
+    const updatedRec = await updateRecipeByID(recipe,updatedRecipe)
     res.status(200).json({
       'success': "freshly new updated eggy",
-      'payload': null
+      'payload': updatedRec
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       'success': false,
       'payload': null
@@ -93,14 +83,15 @@ app.patch('/recipes/:id', (req, res) => {
 })
 
 // delete request to remove a recipe
-app.delete('/recipes/:id', (req, res) => {
+app.delete('/recipes/:id', async (req, res) => {
   try {
+    const recipeee = req.params.id
+    const deletedRec = await deleteRecipeByID(recipeee)
     res.status(200).json({
       'success': "oh no, WHERE IS OUR EGG??!",
-      'payload': null
+      'payload': deletedRec
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       'success': false,
       'payload': null
