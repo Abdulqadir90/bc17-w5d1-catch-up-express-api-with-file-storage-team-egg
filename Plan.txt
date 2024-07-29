@@ -1,16 +1,32 @@
+#1 setup
 npm install
 npm start
 npm dev / run dev
 install, import helmet
 
-#set up requests 
+#2 set up requests 
 - response code sucesess, json: boolean and payload
 - response code fail, json: boolean and payload
 
-get all
-get id
-post 
-patch 
-delete
+#get all
+#get id
+#post 
+#patch 
+#delete
 
-#create helper functions
+#3 Create your CRUD functionality
+import fs module 
+
+#get all
+import recipie data jason
+create read file function 
+-fs
+-jason.parse
+use read file function on imported data
+
+#get id
+#post 
+#patch 
+#delete
+
+#4 Hook up helper functions and API endpoints
