@@ -1,0 +1,16 @@
+npm install
+npm start
+npm dev / run dev
+install, import helmet
+
+#set up requests 
+- response code sucesess, json: boolean and payload
+- response code fail, json: boolean and payload
+
+get all
+get id
+post 
+patch 
+delete
+
+#create helper functions
