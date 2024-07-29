@@ -22,7 +22,11 @@ export async function getRecipes() {
 // console.log(testEgg)
 
 // GET A RECIPE BY ID
+// create variable 
+// define id 
 export async function getRecipeByID(id) {}
+
+
 
 // CREATE A RECIPE
 export async function createRecipe(newRecipe) {}
