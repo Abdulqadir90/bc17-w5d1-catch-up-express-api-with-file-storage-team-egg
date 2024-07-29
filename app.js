@@ -43,6 +43,71 @@ app.get('/recipes', (req, res) => {
   }
 })
 
+// get request to get recipes by id
+app.get('/recipes/:id', (req, res) => {
+  try {
+    res.status(200).json({
+      'success': 'eggById 🥚',
+      'payload': null
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      'success': false,
+      'payload': null
+    })
+  }
+})
+
+// post request to create a new recipe
+app.post('/recipes', (req, res) => {
+  try {
+    // const newEgg = req.body;
+    res.status(200).json({
+      // 'success': newEgg,
+      'payload': null
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      'success': false,
+      'payload': null
+    })
+  }
+})
+
+// patch request to update a recipe
+app.patch('/recipes/:id', (req, res) => {
+  try {
+    res.status(200).json({
+      'success': "freshly new updated eggy",
+      'payload': null
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      'success': false,
+      'payload': null
+    })
+  }
+})
+
+// delete request to remove a recipe
+app.delete('/recipes/:id', (req, res) => {
+  try {
+    res.status(200).json({
+      'success': "oh no, WHERE IS OUR EGG??!",
+      'payload': null
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      'success': false,
+      'payload': null
+    })
+  }
+})
+
 
 // Event listener that listens out for any requests made by client.
 app.listen(PORT, () => {
