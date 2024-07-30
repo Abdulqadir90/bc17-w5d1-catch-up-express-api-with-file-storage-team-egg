@@ -15,8 +15,16 @@ const PORT = 3000;
 app.use(express.static("public"));
 app.use(express.json());
 
+
+// create a get endpoint
+// path should be /.recipes
+// use getRecipes function
+// respond with {success: boolean, payload: recipe array}
+
+
+
 // GET request to get all recipes
-app.get('/recipes', async (req, res) => {
+app.get('/recipes', async (req, res) => { // This line defines a route handler for GET requests to the /recipes path.
   try {
     const allRecipies = await getRecipes()
     res.status(200).json({
